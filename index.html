@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corsa & Cultura: Engineering Legacy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A single-page, vertically scrolling narrative structure that mirrors the pitch deck's logical flow. The core interaction is a tabbed component for the "C&C Integrated System," allowing users to explore the platform's features without being overwhelmed by text. This structure was chosen to build a compelling argument step-by-step, guiding the user from the market problem to our unique solution and proof of concept, making it ideal for a high-stakes pitch. -->
+    <!-- Visualization & Content Choices: The pitch deck's content is qualitative and conceptual. The primary goal is to tell a story. Therefore, the application uses structured HTML, elegant typography, and a single key interactive element (tabs for the C&C System) to organize and present the information. This approach, using vanilla JS for the interaction, avoids unnecessary complexity and focuses on clarity and engagement, which is more effective than static charts for this narrative-driven content. NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #1a1a1a;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .active-tab {
+            background-color: #B48F5D !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 14px 0 rgba(0,0,0, 0.1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .active-content {
+            display: block;
+        }
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1617546873418-e63d3a149a8b?q=80&w=2940&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Hero Section -->
+    <header class="hero-bg relative h-screen w-full flex items-center justify-center text-white text-center">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative z-10 p-4">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">CORSA & CULTURA</h1>
+            <p class="mt-4 text-xl md:text-2xl text-amber-50 tracking-wider">Engineering Legacy.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 md:py-24">
+
+        <!-- Section 1: The Flawed Consensus -->
+        <section id="problem" class="text-center max-w-4xl mx-auto mb-20 md:mb-32">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">The Luxury Market Is Selling a Fleeting Memory.</h2>
+            <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                The consensus belief is that the future of luxury is "experiential." This has created a red ocean of commoditized, "1 to n" services, leading to luxury fatigue. The very act of selling an "experience" strips it of its authenticity.
+            </p>
+            <p class="mt-4 text-xl md:text-2xl font-bold text-amber-800">This is a dead end.</p>
+        </section>
+
+        <!-- Section 2: Our Contrarian Truth -->
+        <section id="solution" class="bg-white rounded-xl shadow-lg p-8 md:p-12 lg:p-16 mb-20 md:mb-32">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">The Future Is Not What You Consume.</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-amber-700">It's What You Create.</h2>
+                    <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+                        The most discerning individuals are no longer satisfied with being passive consumers. They seek the tools to build a life of consequence. Corsa & Cultura is the world's first platform dedicated to this unmet, higher-order need: the <strong class="font-semibold text-gray-800">active engineering of personal legacy.</strong>
+                    </p>
+                </div>
+                <div class="p-4">
+                     <div class="bg-stone-100 p-8 rounded-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold text-center mb-2">Our Mission</h3>
+                        <p class="text-center text-lg text-gray-800 leading-relaxed">
+                           Corsa & Cultura empowers its members to engineer a tangible legacy beyond wealth, using the automobile as our shared medium of creation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The C&C Integrated System (Interactive) -->
+        <section id="system" class="mb-20 md:mb-32">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold">A "Zero to One" Company</h2>
+                <p class="mt-4 text-lg text-gray-700">Our value is delivered through a proprietary, integrated system that is 10x better than the fragmented alternatives.</p>
+            </div>
+
+            <div class="max-w-5xl mx-auto">
+                <!-- Tabs -->
+                <div id="tabs-container" class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-8">
+                    <button data-tab="custodian" class="tab-button text-sm md:text-base font-semibold py-3 px-2 rounded-lg transition-all duration-300 bg-stone-200 text-stone-700 hover:bg-stone-300">
+                        Custodian Platform
+                    </button>
+                    <button data-tab="curation" class="tab-button text-sm md:text-base font-semibold py-3 px-2 rounded-lg transition-all duration-300 bg-stone-200 text-stone-700 hover:bg-stone-300">
+                        Curation & Experiences
+                    </button>
+                    <button data-tab="project" class="tab-button text-sm md:text-base font-semibold py-3 px-2 rounded-lg transition-all duration-300 bg-stone-200 text-stone-700 hover:bg-stone-300">
+                        Project Management
+                    </button>
+                    <button data-tab="vault" class="tab-button text-sm md:text-base font-semibold py-3 px-2 rounded-lg transition-all duration-300 bg-stone-200 text-stone-700 hover:bg-stone-300">
+                        Digital Legacy Vault
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="tab-content-container" class="bg-white rounded-xl shadow-lg p-8 md:p-12 min-h-[24rem] flex items-center">
+                    <div id="custodian" class="tab-content">
+                        <h3 class="text-3xl font-bold mb-4">Your Assets, Managed with Custodianship.</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed">One does not simply own a masterpiece; they are its custodian for the next generation. We provide sourcing, acquisition, fractional ownership opportunities, and C&C Managed Care, including secure storage, maintenance, and bespoke restoration.</p>
+                    </div>
+                    <div id="curation" class="tab-content">
+                        <h3 class="text-3xl font-bold mb-4">Transforming Spectating into Strategic Intelligence.</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed">A trip to Pebble Beach or Le Mans is not a vacation; it's an investment in knowledge. Our Curation AI designs cultural pilgrimages for like-minded investors, turning passive trips into active exercises in amassing collective wealth and shared legacy.</p>
+                    </div>
+                    <div id="project" class="tab-content">
+                        <h3 class="text-3xl font-bold mb-4">Where Ambition Becomes an Institutional-Grade Reality.</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed">Every "Cultura Project" is rigorously vetted by our Asset Management Team. The suite provides transparent oversight, milestone tracking, and direct communication, ensuring every project is managed with fiduciary excellence.</p>
+                    </div>
+                    <div id="vault" class="tab-content">
+                        <h3 class="text-3xl font-bold mb-4">Hyper-Personalization Meets Intelligent Collaboration.</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed">Our platform functions with the intuition of a world-class butler service. We utilize a sophisticated AI to discreetly archive member interests, enabling Intelligent Investor Matching to proactively suggest partnerships and bring new, ambitious projects to life.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: The Roadmap -->
+        <section id="roadmap" class="mb-20 md:mb-32">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold">Our Strategy: Methodical Dominance</h2>
+                <p class="mt-4 text-lg text-gray-700">Our sole focus for the first 24 months is to build an unassailable foundation in Thailand.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-600">
+                     <h3 class="text-2xl font-bold mb-3">1. Recruit the Founding Circle</h3>
+                     <p class="text-gray-600">Hand-select 10-20 co-conspirators through private, high-trust networks to shape our institution from its inception.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-600">
+                     <h3 class="text-2xl font-bold mb-3">2. Launch C&C Bangkok</h3>
+                     <p class="text-gray-600">Establish our flagship clubhouse as the physical heart of our community—a private salon for ideation and creation.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-600">
+                     <h3 class="text-2xl font-bold mb-3">3. Execute Pilot Projects</h3>
+                     <p class="text-gray-600">Launch 3-5 inaugural "Cultura Projects" to provide tangible proof of our capabilities and build our portfolio.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 5: Alliances & Case Study -->
+        <section id="proof" class="bg-stone-800 text-white py-16 md:py-24 rounded-xl">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-8 text-amber-400">Pillars of Excellence</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-2xl font-bold">Wunder Motors Co., LTD.</h3>
+                                <p class="text-stone-300 mt-1">Our foundational partner providing the operational engine for the C&C Custodian Platform.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Exclusive Lamborghini IP Licensing</h3>
+                                <p class="text-stone-300 mt-1">Our exclusive partnership to manage Lamborghini's merchandise licensing in Thailand, positioning us as creators.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Premier Venue Alliances</h3>
+                                <p class="text-stone-300 mt-1">Strategic partnerships with elite venues like MU:IN and Vault 63 to create private stages for our community.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-stone-900 p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4 text-amber-400">Case Study: The "Ayutthaya Treasure"</h3>
+                        <p class="font-semibold text-lg mb-4">A 1967 Lamborghini Miura P400</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-300">
+                            <li>Sourced the vehicle and structured a 10-share fractional ownership opportunity.</li>
+                            <li>Presented exclusively to our Founding Circle.</li>
+                            <li>The project was fully subscribed, creating a tangible, shared, heritable asset.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer / Invitation -->
+    <footer class="bg-black text-white py-20 text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold">The future is not for everyone.</h2>
+            <p class="mt-4 text-xl text-stone-300">It is for those who build it.</p>
+            <p class="mt-8 text-lg text-stone-400">For those who share our belief that legacy is something to be engineered, we invite you to begin a conversation.</p>
+            <div class="mt-10">
+                 <a href="#" class="inline-block bg-amber-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-amber-700 transition-colors">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            function showTab(tabName) {
+                tabs.forEach(tab => {
+                    if (tab.dataset.tab === tabName) {
+                        tab.classList.add('active-tab');
+                    } else {
+                        tab.classList.remove('active-tab');
+                    }
+                });
+
+                contents.forEach(content => {
+                    if (content.id === tabName) {
+                        content.classList.add('active-content');
+                    } else {
+                        content.classList.remove('active-content');
+                    }
+                });
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    showTab(tab.dataset.tab);
+                });
+            });
+
+            // Show the first tab by default
+            showTab('custodian');
+        });
+    </script>
+
+</body>
+</html>
